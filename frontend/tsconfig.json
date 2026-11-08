@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "ES2022.Intl"], "module": "ESNext",
+    "skipLibCheck": true, "moduleResolution": "Bundler", "allowImportingTsExtensions": true,
+    "resolveJsonModule": true, "isolatedModules": true, "noEmit": true,
+    "jsx": "react-jsx", "strict": true, "noUnusedLocals": true,
+    "paths": { "@/*": ["./src/*"] },
+    "noUnusedParameters": true
+  },
+  "include": ["src"], "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,84 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f5f2eb;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button { font: inherit; }
+.shell { height: 100svh; min-height: 560px; display: flex; flex-direction: column; overflow: hidden; background: #050505; }
+.topbar { height: 78px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(22px, 5vw, 72px); }
+.wordmark { display: flex; align-items: center; gap: 10px; color: #aaa7a0; font-size: 11px; font-weight: 600; letter-spacing: .2em; }
+.mark { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid #55534e; border-radius: 50%; color: #dedad1; font-size: 13px; font-weight: 500; letter-spacing: 0; }
+.mode { display: flex; align-items: center; gap: 7px; border: 1px solid #292825; border-radius: 99px; padding: 8px 12px; color: #aaa7a0; background: #111110; font-size: 11px; font-weight: 500; cursor: pointer; }
+.connection-dot { width: 6px; height: 6px; border-radius: 50%; background: #726d62; }
+.mode.demo .connection-dot { background: #d7a83d; }
+.stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 0 18px 30px; }
+.robot { flex-shrink: 0; width: min(92vw, 656px); aspect-ratio: 1312 / 1199; background: url('/jarvis-bot-sprite.png') 0 0 / 200% 200% no-repeat; }
+.robot--idle { background-position: 10% 0; }
+.robot--listening { background-position: 88% 0; }
+.robot--thinking { background-position: 10% 97%; }
+.robot--speaking { background-position: 89% 97%; }
+.robot--idle { animation: idle 3.6s ease-in-out infinite; }
+.robot--thinking { animation: think 2.6s ease-in-out infinite; }
+.robot--speaking { animation: speak .42s ease-in-out infinite alternate; }
+.status { margin: 4px 0 20px; color: #c1bdb4; font-size: 13px; font-weight: 500; letter-spacing: .015em; }
+.mic { flex-shrink: 0; width: 76px; height: 76px; display: grid; place-items: center; border: 1px solid #fff; border-radius: 50%; color: #fff; background: #080808; box-shadow: 0 0 0 1px #fff, 0 0 14px #ffffff38, inset 0 1px 3px #ffffff29; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.mic:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px #fff, 0 0 20px #ffffff65, inset 0 1px 3px #ffffff29; }
+.mic:active { transform: scale(.96); }
+.mic.active { animation: ring 1.8s ease-out infinite; }
+.hint { margin: 14px 0 0; color: #77746e; font-size: 11px; }
+.caption { position: absolute; bottom: 92px; display: flex; flex-direction: column; align-items: center; gap: 8px; max-width: min(560px, 90vw); color: #99958d; font-size: 13px; text-align: center; }
+.caption strong { color: #e2ded5; font-weight: 500; }
+.error { position: absolute; bottom: 38px; color: #f09a8e; font-size: 12px; text-align: center; }
+.reminders { position: absolute; z-index: 1; top: 50%; right: clamp(22px, 5vw, 72px); transform: translateY(-50%); width: min(290px, 26vw); max-height: 72%; overflow: auto; padding: 18px; border: 1px solid #292825; border-radius: 16px; background: #0c0c0bee; color: #e2ded5; }
+.reminders h2 { margin: 0 0 14px; font-size: 14px; font-weight: 500; }
+.reminders form { display: grid; gap: 9px; }
+.reminders label { display: grid; gap: 5px; color: #aaa7a0; font-size: 10px; }
+.reminders input { width: 100%; min-width: 0; border: 1px solid #33312d; border-radius: 7px; padding: 8px; color: #f5f2eb; background: #111110; font: inherit; font-size: 11px; color-scheme: dark; }
+.reminders form button { justify-self: start; border: 1px solid #68645c; border-radius: 99px; padding: 7px 13px; color: #f5f2eb; background: #171715; cursor: pointer; font-size: 11px; }
+.reminders button:disabled { opacity: .45; cursor: default; }
+.reminders ul { display: grid; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.reminders li { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid #252421; padding-top: 8px; font-size: 11px; }
+.reminders li span { min-width: 0; overflow-wrap: anywhere; }
+.reminders time { display: block; margin-top: 3px; color: #88847c; font-size: 10px; }
+.reminders li button { flex-shrink: 0; display: grid; place-items: center; border: 0; padding: 6px; color: #aaa7a0; background: transparent; cursor: pointer; }
+.empty-reminders { margin: 14px 0 0; color: #77746e; font-size: 11px; }
+.reminder-alert { position: absolute; z-index: 2; top: 18px; left: 50%; transform: translateX(-50%); display: grid; gap: 8px; max-width: 90%; padding: 11px 14px; border: 1px solid #87713c; border-radius: 12px; color: #f2d89a; background: #17140d; font-size: 12px; }
+.reminder-alert div { display: flex; align-items: center; gap: 9px; }
+.reminder-alert button { border: 0; color: inherit; background: transparent; text-decoration: underline; cursor: pointer; font-size: 11px; }
+.footer { height: 58px; flex-shrink: 0; display: flex; align-items: center; padding: 0 clamp(22px, 5vw, 72px); color: #6f6c66; font-size: 10px; letter-spacing: .03em; }
+.footer span { display: flex; align-items: center; gap: 7px; }
+@keyframes idle { 50% { transform: translateY(-5px); } }
+@keyframes think { 50% { transform: translateY(-3px) rotate(-1deg); } }
+@keyframes speak { to { transform: translateY(-2px) scale(1.008); } }
+@keyframes ring { 50% { box-shadow: 0 0 0 2px #fff, 0 0 0 8px #ffffff25, 0 0 22px #ffffff55; } }
+@media (max-height: 720px) {
+  .topbar { height: 62px; }
+  .robot { width: min(82vw, 500px); }
+  .status { margin-top: 0; margin-bottom: 12px; }
+  .mic { width: 66px; height: 66px; }
+  .hint { margin-top: 8px; }
+  .footer { height: 46px; }
+}
+@media (max-width: 1100px) {
+  .shell { height: auto; min-height: 100svh; overflow: auto; }
+  .stage { min-height: calc(100svh - 136px); overflow: visible; }
+  .reminders { position: static; transform: none; width: min(100%, 500px); max-height: none; margin: 26px auto 0; }
+  .reminder-alert { position: fixed; top: 76px; }
+}
+@media (max-height: 640px) {
+  .shell { min-height: 480px; }
+  .robot { width: min(68vw, 420px); }
+  .status { margin-bottom: 6px; }
+  .mic { width: 56px; height: 56px; }
+  .hint { margin-top: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
