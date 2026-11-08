@@ -1,0 +1,17 @@
+.venv/
+jarvis_env/
+.jarvis-python/
+.DS_Store
+__pycache__/
+*.py[cod]
+models/
+voices/*.onnx
+voices/*.onnx.json
+data/logs/
+data/*.sqlite*
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+.playwright-mcp/
+Jarvis.app/
+resposta.mp3
